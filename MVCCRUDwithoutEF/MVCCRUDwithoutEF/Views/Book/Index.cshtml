@@ -1,0 +1,49 @@
+﻿@model System.Data.DataTable
+
+@{
+    ViewData["Title"] = "List of Books";
+}
+
+<div class="jumbotron">
+    <h1 class="text-center">@ViewData["Title"]</h1>
+</div>
+
+<table class="table table-bordered">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                Book Title
+            </th>
+            <th>
+                Author
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                <a asp-action="AddOrEdit">Create New</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Rows.Count; i++)
+        {
+
+            <tr>
+                <td>
+                    @Model.Rows[i]["Title"]
+                </td>
+                <td>
+                    @Model.Rows[i]["Author"]
+                </td>
+                <td>
+                    @Model.Rows[i]["Price"]
+                </td>
+                <td>
+                    <a asp-action="AddOrEdit" asp-route-id="@Model.Rows[i]["BookID"]">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@Model.Rows[i]["BookID"]">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
